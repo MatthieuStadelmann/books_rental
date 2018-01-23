@@ -30,7 +30,7 @@ class Book {
     return this._price;
   }
   get allInfos() {
-    return `Title: ${this._title} Year: ${this._year} Author: ${this._author} Status: ${this.availability} Location: ${this._location} Price: ${this._price}CHF`;
+    return `Title: ${this._title} Year: ${this._year} Author: ${this._author} Status: ${this._available} Location: ${this._location} Price: ${this._price}CHF`;
   }
   get rentingPeriodleft () {
     return this._rentingPeriod;
@@ -40,7 +40,7 @@ class Book {
   }
 }
 
-const fireAndFury = new Book('Fire and Fury: Inside the Trump White House', '2018', 'Michael Wolf', 'Available from 30.02.18', 'Lausanne', 30);
+const fireAndFury = new Book('Fire and Fury: Inside the Trump White House', '2018', 'Michael Wolf', 'available', 'Lausanne', 30);
 
 let library = [];
 
@@ -49,17 +49,18 @@ library.push(fireAndFury);
 //Show user what books are Available
 function showAvailable() {
   library.forEach((book) => {
-    if(book.availability === 'available') {
-      return (book.allInfos);
+    if(book._available === 'available') {
+      return book.allInfos;
     }
   })
 };
-
+showAvailable();
 //Show user list of books by authors
 function sortBookByAuthor(author) {
   const result = library.filter(book => book.author === author)
   return result;
 };
+sortBookByAuthor('Michael Wolf');
 //Search if a book is available
 function isAvailable(author, title) {
   library.forEach((book) => {
